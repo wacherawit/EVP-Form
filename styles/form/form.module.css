@@ -1,0 +1,35 @@
+.Header {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  font-weight: 600;
+}
+
+.FormBox {
+  border: 1px solid #CDCCCC;
+  border-radius: 20px;
+  padding: 40px 90px;
+  width: 100%;
+}
+.FormBox .FormCon {
+  display: flex;
+  align-items: center;
+}
+.FormBox .FormCon label {
+  width: 40%;
+  font-size: 1.5rem;
+}
+.FormBox .FormCon .InputBox {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  width: 60%;
+}
+.FormBox .FormCon .InputBox input {
+  width: 261px;
+  height: 48px;
+  border: 1px solid #908D8D;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 20px;
+}/*# sourceMappingURL=form.module.css.map */

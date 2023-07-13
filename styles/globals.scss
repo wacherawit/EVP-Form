@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&family=Montserrat:wght@300;700&display=swap');
+$LightText : 1em;
+$HeadText : 22px;
+$normalSize: 14px;
+.container{
+    max-width: 1140px;
+}
+body{
+  font-family: "Kanit", "Montserrat", "Helvetica", Arial, sans-serif;
+  margin: 0;
+  width: 100%;
+}
+nav div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0px 10px 10px -3px rgba(0,0,0,0.1);   
+}
+.scrollBtn{
+    position: fixed;
+    right: 3%;
+    bottom: 5%;
+    button {
+            width: 71px;
+            height: 71px;
+            border: 0px;
+            border-radius: 50px;
+            background-color: black;
+        }
+}
+.Map{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.Contact{
+    font-size: $normalSize;
+    font-weight: 300px;
+}
+footer{
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+    border: 0px #00f solid;
+        h2 {
+            font-size: $LightText;
+            font-weight: 200;
+            margin: 10px 0;
+        }
+    
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        h3 {
+            font-size: $HeadText;
+            font-weight: 300;
+            margin: 10px 0;
+        }
+}
+footer a :hover{
+    color: red;
+}
+.Foot_bot{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    margin: 50px 15px;
+    
+}
+.Foot_left{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    max-width: 33.33%;
+}
+.text-red{
+    color: red;
+}
+.Foot_right{
+    padding: 0 15px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.Menu_box{
+    width: 20%;
+    max-width: 20%;
+    padding: 10px 20px;
+}
+
+.Head_menu{
+    font-weight: 300;
+    font-size: 1.125rem;
+}
+.Menu_link{
+    font-weight: lighter;
+    font-size: $normalSize;
+}
+.Menu_link :hover{
+    color: red;
+}
+.Follow{
+    background-color:  black;
+    width: max-content;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 2px;
+}
+@media (max-width: 992px){
+    .Map{
+        flex-wrap: wrap;
+    }
+}
