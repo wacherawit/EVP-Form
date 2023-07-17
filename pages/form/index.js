@@ -2,26 +2,122 @@ import Head from "next/head"
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import StepOne from "./step1";
-import StepTwo from "./step2";
+import StepOne from "../../component/form/step1";
+import StepTwo from "../../component/form/step2";
+
+const initialValues = {
+  personalInfo: {
+    Name: {
+      firstName: "",
+      lastName: "",
+    },
+    NameEN : {
+      firstNameEN: "",
+      lastNameEN: "",
+    },
+    Nickname: "",
+    Gender : "",
+    Birth : {
+      date: "",
+      age: "",
+    },
+    Blood: "",
+    Id_card: "",
+    Nation: "",
+    Born: "",
+    Phone: {
+      phone: "",
+      Emergen: "",
+    },
+    Email: "",
+  },
+  Address: {
+    Home: "",
+    province: "",
+    county: "",
+    Sub_dis: "",
+    Post: "",
+  },
+  Address_contact: {
+    Home: "",
+    province: "",
+    county: "",
+    Sub_dis: "",
+    Post: "",
+  }
+};
+
+const validationSchema = Yup.object({
+  personalInfo: Yup.object({
+    Name: Yup.object({
+      firstName: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+      lastName: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    }),
+    NameEN: Yup.object({
+      firstNameEN: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+      lastNameEN: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    }),
+    Nickname: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Gender: Yup.string().required("Please select your gender"),
+    Birth: Yup.object({
+      date: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+      age: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    }),
+    Blood: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Id_card: Yup.number()
+      .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
+      .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
+    Nation: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Born: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Phone: Yup.object({
+      phone: Yup.number()
+        .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
+        .typeError("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+      Emergen: Yup.number()
+        .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
+        .typeError("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    }),
+    Email: Yup.string()
+      .email("*กรุณากรอกข้อมูลให้ครบถ้วน")
+      .required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+  }),
+  Address: Yup.object({
+    Home: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    province: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    county: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Sub_dis: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Post: Yup.number()
+      .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
+      .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
+  }),
+  Address_contact: Yup.object({
+    Home: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    province: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    county: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Sub_dis: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
+    Post: Yup.number()
+      .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
+      .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
+  })
+});
 
 const MultiForm = () => {
     const [currentPage, setCurrentPage] = useState(1);
-
     const ProgressBar = ({ step }) => {
       const [activeStep, setActiveStep] = useState(currentPage);
       const progressBarStyles = {
-        width: `${activeStep * 25}%`,
+        width: `${(activeStep - 1) * 25}%`,
+        backgroundColor: activeStep >= step ? 'green' : 'red',
       };
-
+    
       return (
         <div className="progress-bar">
           <div className="progress" style={progressBarStyles}></div>
-          <div className="progress-steps">
-            <div className={` ${activeStep >= 1 ? "active" : ""}`}></div>
-            <div className={`${activeStep >= 2 ? "active" : ""}`}></div>
-            <div className={`${activeStep >= 3 ? "active" : ""}`}></div>
-            <div className={`${activeStep >= 4 ? "active" : ""}`}></div>
+          <div className="progress-steps d-flex">
+            <div className={`${activeStep >= 1 ? 'active' : ''}`}></div>
+            <div className={`${activeStep >= 2 ? 'active' : ''}`}></div>
+            <div className={`${activeStep >= 3 ? 'active' : ''}`}></div>
+            <div className={`${activeStep >= 4 ? 'active' : ''}`}></div>
           </div>
         </div>
       );
@@ -37,96 +133,20 @@ const MultiForm = () => {
   
     return (
       <div>
-        <h1>Multi-Step Form</h1>
+        <h1 className="Header">APPLICATION FORM</h1>
         <ProgressBar step={currentPage} />
+        
         <Formik
-        initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-        }}
-        validationSchema={Yup.object({
-          firstName: Yup.string().required('First Name is required'),
-          lastName: Yup.string().required('Last Name is required'),
-          email: Yup.string().email('Invalid email address').required('Email is required'),
-          phone: Yup.string().required('Phone is required'),
-        })}
-      >
-          {/* {({ isSubmitting, isValidating }) => (
-            <Form className="FormBox">
-              {currentPage === 1 && (
-                <>
-                  <h2>Step 1: Personal Information</h2>
-                  <div className="FormCon">
-                    <label htmlFor="NameTH">ชื่อ - นามสกุล*</label>
-                    <div className="InputBox">
-                      <div>
-                        <Field type="text" id="NameTH" name="NameTH" />
-                        <ErrorMessage
-                          name="NameTH"
-                          component="div"
-                          className="error"
-                        />
-                      </div>
-                      <div>
-                        <Field type="text" id="LastNameTH" name="LastNameTH" />
-                        <ErrorMessage
-                          name="LastNameTH"
-                          component="div"
-                          className="error"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="lastName">Last Name</label>
-                    <Field type="text" id="lastName" name="lastName" />
-                    <ErrorMessage
-                      name="lastName"
-                      component="div"
-                      className="error"
-                    />
-                  </div>
-                  <button type="button" onClick={handleNextPage}>
-                    Next
-                  </button>
-                </>
-              )}
-
-              {currentPage === 2 && (
-                <>
-                  <h2>Step 2: Contact Information</h2>
-                  <div>
-                    <label htmlFor="email">Email</label>
-                    <Field type="email" id="email" name="email" />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="error"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="address">Address</label>
-                    <Field type="text" id="address" name="address" />
-                    <ErrorMessage
-                      name="address"
-                      component="div"
-                      className="error"
-                    />
-                  </div>
-                  <button type="button" onClick={handlePreviousPage}>
-                    Previous
-                  </button>
-                  <button type="submit" disabled={isSubmitting || isValidating}>
-                    {isSubmitting ? "Submitting..." : "Submit"}
-                  </button>
-                </>
-              )}
-            </Form>
-          )} */}
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={(values) => {
+            console.log(values);
+          }}
+        >
           {({ isSubmitting }) => (
             <Form>
+              <button type="submit">Submit</button>
+              <button onClick={() => handleNextPage()}>next</button>
               {currentPage === 1 && <StepOne onNext={handleNextPage} />}
               {currentPage === 2 && <StepTwo onPrevious={handlePreviousPage} />}
             </Form>

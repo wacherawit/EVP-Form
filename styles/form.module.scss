@@ -1,3 +1,13 @@
+$form-check-input-active-filter:          brightness(90%);
+@mixin border($Width , $Height) {
+        border: 1px solid #908D8D;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 20px;
+        font-weight: lighter;
+        width: $Width;
+        height: $Height;
+}
 .Header{
     display: flex;
     justify-content: center;
@@ -9,26 +19,138 @@
     border-radius: 20px;
     padding: 40px 90px;
     width: 100%;
+    .Form_log   {
+        border-bottom: 1px solid #D9D9D9;
+        padding: 20px 0;  
+    }
     .FormCon{
         display: flex;
         align-items: center;
+        .Input_left , .Input_right{
+            width: 50%;
+        }
+        .Input_Full{
+            width: 100%;
+            .textInput_full{
+                @include border (100% , 48px);
+            }
+        }
         label{
             width: 40%;
             font-size: 1.5rem;
         }
         .InputBox{
+            position: relative;
             display: flex;
-            justify-content: space-around;
             margin: 20px 0;
             width: 60%;
-            input{
-                width: 261px;
-                height: 48px;
-                border: 1px solid #908D8D;
-                border-radius: 10px;
-                padding: 5px 10px;
-                font-size: 20px;
+            .textInput{
+                @include border (261px , 48px);
             }
+            .Radio{
+                display: flex;
+                width: 100%;
+                .radio-button{
+                    display: flex;
+                    align-items: center;
+                    font-size: 24px;
+                    font-weight: lighter;
+                    .Picker {
+                            margin: 0 10px;
+                            width: 40px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: left;
+                            align-items: center;
+                        }
+                    }
+                }
+            .date_input{
+                    position: relative;
+                }
+            .date_icon{
+                    position: absolute;
+                    right: 10%;
+                    top: 30%;
+                }
+            }
+            .small_input{
+                @include border(30% , 48px);
+                display: flex;
+            }
+            .Select_box{
+                position: relative;
+                .dropdown-select{
+                    @include border(180px , 48px);
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    
+                }
+                .dropdown-select_full{
+                    @include border(100% , 48px);
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
+                .Button_select{
+                    background-color: #B70909;
+                    position: absolute;
+                    width: 40px;
+                    height: 100%;
+                    border: 0px;
+                    border-radius: 10px;
+                    border-top-left-radius: 0px;
+                    border-bottom-left-radius: 0px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    right: 0;
+                    top: 0;
+                }
+                .Menu_select{
+                    position: absolute;
+                    z-index: 1;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    border: 1px solid #CDCCCC;
+                    background-color: white;
+                    border-bottom-left-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    border-top: 0px;
+                    padding-top: 5%;
+
+                    button{
+                        border: 0;
+                        background-color: rgba(255, 255, 255, 0);
+                    }
+                }   
+                .Menu_select :hover{
+                    margin: 0px 5px;    
+                    border-radius: 5px;
+                    background-color: rgb(224, 46, 46);
+                    color: white;
+                }                    
+            }
+            
+        }
+    .Same_address_check{
+        display: flex;
+        font-size: 1.5rem;
+        input{
+            width: 32px;
+            height: 32px;
+            margin: 0 20px;
+        }
+        input:checked{
+            background-color: #B70909;
         }
     }
+    }
+.error{
+    font-size: 15px;
+    position: absolute;
+    color: #B70909;
+    font-weight: lighter;
 }
