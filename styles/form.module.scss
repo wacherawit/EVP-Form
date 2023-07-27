@@ -8,6 +8,12 @@ $form-check-input-active-filter:          brightness(90%);
         width: $Width;
         height: $Height;
 }
+@mixin disableBtn() {
+    color: #8A8A8A;
+    background-color: #D9D9D9;
+    pointer-events: none;
+    border: 0px;
+}
 .Header{
     display: flex;
     justify-content: center;
@@ -19,9 +25,13 @@ $form-check-input-active-filter:          brightness(90%);
     border-radius: 20px;
     padding: 40px 90px;
     width: 100%;
+    .font_detail{
+        font-size: 18px;
+        font-weight: lighter;
+    }
     .Form_log   {
-        border-bottom: 1px solid #D9D9D9;
-        padding: 20px 0;  
+        border-top: 1px solid #D9D9D9;
+        padding: 20px 0;
     }
     .FormCon{
         display: flex;
@@ -34,6 +44,19 @@ $form-check-input-active-filter:          brightness(90%);
             .textInput_full{
                 @include border (100% , 48px);
             }
+            .textInput_full_Big{
+                @include border (100% , 144px);
+                resize: none;
+                .disabled{
+                    pointer-events: none;
+                    border: 1px solid #E0E0E0;
+                }
+            }
+            .textInput_full_Big.disabled{
+                background-color: #F0F0F0;
+                pointer-events: none;
+                border: 1px solid #E0E0E0;
+            }
         }
         label{
             width: 40%;
@@ -44,8 +67,26 @@ $form-check-input-active-filter:          brightness(90%);
             display: flex;
             margin: 20px 0;
             width: 60%;
+            .Button_select.disabled{
+                background-color: #D7D7D7;
+                pointer-events: none;
+            }
             .textInput{
                 @include border (261px , 48px);
+            }
+            .textInput_long{
+                @include border (356px , 48px);
+            }
+            .textInput_Link{
+                @include border (356px , 48px);
+            }
+            .disabled{
+                border: 1px solid #E0E0E0;
+                pointer-events: none;
+                border: 1px solid #E0E0E0;
+            }
+            .disabled::-ms-input-placeholder{
+                color: #c70b0b;
             }
             .Radio{
                 display: flex;
@@ -55,30 +96,145 @@ $form-check-input-active-filter:          brightness(90%);
                     align-items: center;
                     font-size: 24px;
                     font-weight: lighter;
-                    .Picker {
-                            margin: 0 10px;
-                            width: 40px;
-                            height: 40px;
+                    .radio_box{
+                        position: relative;
+                        width: 40px;
+                        height: 40px;
+                        border: 2px solid #908D8D;
+                        border-radius: 50px;
+                        margin-right: 10px;
+                    }
+                    .Picker {   
+                            width: 36px;
+                            height: 36px;
                             display: flex;
                             justify-content: left;
                             align-items: center;
                         }
+                    .Picker_check {   
+                            width: 36px;
+                            height: 36px;
+                            display: flex;
+                            justify-content: left;
+                            align-items: center;
+                            border-radius: 5px;
+                        }
+                        input[type="radio"] {
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            border: 6px solid #fefefe;
+                            border-radius: 50%;
+                            outline: none;
+                          }
+                          input[type="radio"]:checked {
+                            background-color: #B70909;
+                          }
+                        
+                          input[type="radio"].Picker_check {
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                          }
+                          input[type="radio"]:checked {
+                            background-color: #B70909;
+                          }
                     }
                 }
             .date_input{
+                position: relative;
+                width: max-content;
+                .date-picker_small{
+                    @include border (166px , 48px); 
+                }
+                .date_input{
                     position: relative;
                 }
-            .date_icon{
+                .date_icon{
                     position: absolute;
                     right: 10%;
                     top: 30%;
                 }
             }
-            .small_input{
+            .date-picker_small.disabled{
+                pointer-events: none;
+                border: 1px solid #E0E0E0;
+            }
+            .file_input::-webkit-file-upload-button {
+                visibility: hidden;
+            }
+            .file_input{
+                position: relative;
+                content: 'เพิ่มไฟล์';
+                    display: flex;
+                    background-color: #B70909;
+                    color: #ffff;
+                    border-radius: 5px;
+                    width: 166px;
+                    height: 48px;
+                    margin: 20px;
+                    border: 0px;
+                    font-weight: 400;
+                    font-size: 18px;
+                    text-align: center;
+                    align-items: center;
+                    justify-content: center;
+                    input[type="file"] {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                        z-index: 10;
+                    }
+            }
+            .file_input.disabled{
+                background-color: #D9D9D9;
+                color: #8A8A8A;
+                pointer-events: none;
+            }
+            .File_upload{
+                .file{
+                    position: relative;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    color: #8A8A8A;
+                    border: 1px solid #CDCCCC;
+                    border-radius: 5px;
+                    overflow: hidden;
+                    padding: 5px 10px;
+                    font-size: 20px;
+                    font-weight: lighter;
+                    width: 214px;
+                    height: 48px;
+                    .file_logo{
+                        border: 0px;
+                        background-color: #ffff;
+                        padding: 0px 7px;
+                    }
+                    button{
+                        position: absolute;
+                        border: 0px;
+                        background-color: #ffff;
+                        right: 2%;
+                    }
+
+                }
+                
+                .file_name_none{
+                    color: #8A8A8A;
+                    font-weight: lighter;
+                    font-size: 22px;
+                }
+            }
+        }
+        .small_input{
                 @include border(30% , 48px);
                 display: flex;
             }
-            .Select_box{
+        .Select_box{
                 position: relative;
                 .dropdown-select{
                     @include border(180px , 48px);
@@ -88,7 +244,7 @@ $form-check-input-active-filter:          brightness(90%);
                     
                 }
                 .dropdown-select_full{
-                    @include border(100% , 48px);
+                    @include border(261px , 48px);
                     appearance: none;
                     -webkit-appearance: none;
                     -moz-appearance: none;
@@ -131,26 +287,148 @@ $form-check-input-active-filter:          brightness(90%);
                     border-radius: 5px;
                     background-color: rgb(224, 46, 46);
                     color: white;
-                }                    
+                }
+                .disabled{
+                    pointer-events: none;
+                    border: 1px solid #E0E0E0;
+                }
             }
-            
+        .add_person_btn{
+            border: 1px solid #908D8D;
+            border-radius: 5px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            margin-right: 20px;
         }
-    .Same_address_check{
+        .add_person{
+            font-size: 24px;
+            color: #8A8A8A;
+        }                 
+        }
+    }
+        
+    .Check_box{
         display: flex;
         font-size: 1.5rem;
         input{
             width: 32px;
             height: 32px;
             margin: 0 20px;
+            border-radius: 5px;
+            border: 2px solid #CDCCCC;
+            .dark{
+                border: 2px solid #908D8D;
+            } 
         }
         input:checked{
             background-color: #B70909;
+            border: 0px;
+        }
+        .form-check-input:focus{
+            box-shadow: 0 0 0 0 ;
+            border: 0xp;
         }
     }
-    }
+input:disabled {
+    background: #F0F0F0;
+    border: 0px;
+} 
 .error{
     font-size: 15px;
     position: absolute;
     color: #B70909;
     font-weight: lighter;
+    bottom: -25px;
+    white-space: nowrap;
 }
+.error2{
+    font-size: 15px;
+    position: absolute;
+    color: #B70909;
+    font-weight: lighter;
+    bottom: -12px;
+}
+.Button_form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .Back , .Next{
+        border-radius: 5px;
+        width: 120px;
+        height: 56px;
+        margin: 20px;
+        font-size: 1.5rem;
+        border: 0px;
+    }
+    .Back{
+        border: 1px solid #000000;
+        background-color: white;
+    }
+    .Back.disabled{
+        @include disableBtn()
+    }
+    .Next{
+        background-color: #B70909;
+        color: white;
+    }
+    .Next.disabled{
+        @include disableBtn()
+    }
+}
+.progress-steps{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 50px;
+    .Progress{
+        background-color: #CDCCCC;
+        width: 15%;
+        height: 10px;
+    }
+    .Progress.active{
+        background-color: #B70909;
+    }
+}
+.react-datepicker{
+    font-family: "Kanit", "Montserrat", "Helvetica", Arial, sans-serif;
+    border: 1px solid #D4D4D4;
+    border-radius: 10px;
+    font-weight: 400;
+    .react-datepicker__header{
+        background: none;
+        border-bottom: 0;
+    }
+    .react-datepicker__day{
+        font-size: 14px;
+    }
+    .react-datepicker__day--outside-month{
+        color: #CDCCCC;
+    }
+    .react-datepicker__day-name{
+        color: #8A8A8A;
+        font-size: 12px;
+        text-transform: uppercase;
+    }
+    .react-datepicker__navigation , .react-datepicker__current-month{
+        display: none;
+    }
+    .react-datepicker__header__dropdown{
+        font-size: 20px;
+    }
+    .react-datepicker__month-read-view--down-arrow , .react-datepicker__year-read-view--down-arrow{
+        border-color: #000000;
+        border-width: 2px 2px 0 0;
+        top: 30%
+    }
+    .react-datepicker__month-option,.react-datepicker__year-option{
+        font-size: 14px;
+        font-family: "Kanit", "Montserrat", "Helvetica", Arial, sans-serif;
+    }
+}
+
+
