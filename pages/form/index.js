@@ -1,7 +1,8 @@
-import Head from "next/head"
+import Head from "next/head";
 import { useState } from "react";
 import { useFormikContext, Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
+import { object, boolean, string, mixed, array } from 'yup';
 import DatePicker from "react-datepicker";
 import StepOne from "../../component/form/step1";
 import StepTwo from "../../component/form/step2";
@@ -116,7 +117,7 @@ const initialValues = {
   Experience: [{
     isExperience: false,
   }],
-  Know : {
+  Know: {
     Name: "",
     relation: "",
   },
@@ -125,31 +126,29 @@ const initialValues = {
     Request_2: "",
     Request_3: "",
   },
-  Start_work:{
+  Start_work: {
     date: "",
     now: false,
-    Salary : "",
+    Salary: "",
   },
   Term: false,
   File: {
-    Resume : null,
+    Resume: null,
     Transcript: null,
     Port: [],
     Link: [
       {
         Link: "",
-      }
+      },
     ],
   },
-  Submit_Term:[],
+  Submit_Term: [],
   Name_com: {
     firstName: "",
     lastName: "",
   },
   Agree: false,
 };
-
-
 const validationSchema = Yup.object({
   personalInfo: Yup.object({
     Name: Yup.object({
@@ -248,59 +247,35 @@ const validationSchema = Yup.object({
       Uni_major: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
     }),
   }),
-  // Experience: Yup.array().of(
-  //   Yup.object().shape({
-  //     isExperience: Yup.boolean(),
-  //     Company: Yup.object().when('isExperience', {
-  //       is: false,
-  //       then: Yup.object().shape({
-  //         Company_name: Yup.string().required('Company name is required'),
-  //         Company_type: Yup.string().required('Company type is required'),
-  //         Company_location: Yup.string().required('Company location is required'),
-  //         Jobs: Yup.string().required('Jobs is required'),
-  //         Time: Yup.object().shape({
-  //           start: Yup.string().required('Start time is required'),
-  //           end: Yup.string().required('End time is required'),
-  //         }),
-  //         Position: Yup.object().shape({
-  //           start: Yup.string().required('Start position is required'),
-  //           end: Yup.string().required('End position is required'),
-  //         }),
-  //         Salary: Yup.object().shape({
-  //           start: Yup.string().required('Start salary is required'),
-  //           end: Yup.string().required('End salary is required'),
-  //         }),
-  //       }),
-  //     }).default(Yup.object()), // Add a default() to the 'then' case
-  //   })
-  // ),
   Experience: Yup.array().of(
     Yup.object().shape({
       isExperience: Yup.boolean(),
-      Company: Yup.object().shape({
-        Company_name: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        Company_type: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        Company_location: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        Jobs: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        Time: Yup.object().shape({
-          start: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-          end: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        }),
-        Position: Yup.object().shape({
-          start: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-          end: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-        }),
-        Salary: Yup.object().shape({
-          start: Yup.number()
-            .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
-            .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
-          end: Yup.number()
-            .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
-            .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
+      Company: Yup.object().when('isExperience', {
+        is: false,
+        then: () => Yup.object({
+          Company_name: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          Company_type: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          Company_location: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          Jobs: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          Time: Yup.object().shape({
+            start: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+            end: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          }),
+          Position: Yup.object().shape({
+            start: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+            end: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน'),
+          }),
+          Salary: Yup.object().shape({
+            start: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน')
+              .typeError('*กรุณากรอกข้อมูลให้ถูกต้อง'),
+            end: Yup.string().required('*กรุณากรอกข้อมูลให้ครบถ้วน')
+              .typeError('*กรุณากรอกข้อมูลให้ถูกต้อง'),
+          }),
         }),
       }),
     })
   ),
+  
   Request: Yup.object({
     Request_1: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
     Request_2: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
@@ -319,10 +294,10 @@ const validationSchema = Yup.object({
   Term: Yup.boolean()
     .oneOf([true], "You must agree to the terms and conditions")
     .required("You must agree to the terms and conditions"),
-    File: Yup.object({
-      Resume: Yup.mixed().required("Require"),
-      Transcript: Yup.mixed().required("Require"),
-    }),
+  File: Yup.object({
+    Resume: Yup.mixed().required("Require"),
+    Transcript: Yup.mixed().required("Require"),
+  }),
   Submit_Term: Yup.array().of(
     Yup.boolean()
       .oneOf([true], "You must agree to the terms and conditions")
@@ -337,108 +312,90 @@ const validationSchema = Yup.object({
     .required("You must agree to the terms and conditions"),
 });
 
-
 const MultiForm = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
-    
-
-    const ProgressBar = ({ step }) => {
-    
-      return (
-        <div className="progress-bar">
-          <div className="progress-steps d-flex">
-            <div className={`Progress ${currentPage >= 1 ? "active" : ""}`}></div>
-            <div className={`Progress ${currentPage >= 2 ? "active" : ""}`}></div>
-            <div className={`Progress ${currentPage >= 3 ? "active" : ""}`}></div>
-            <div className={`Progress ${currentPage >= 4 ? "active" : ""}`}></div>
-            <div className={`Progress ${currentPage >= 5 ? "active" : ""}`}></div>
-            <div className={`Progress ${currentPage >= 6 ? "active" : ""}`}></div>
-          </div>
-        </div>
-      );
-    };
-
-  
-    const handleNextPage = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-      setCurrentPage((prevPage) => prevPage + 1);
-    };
-    const onSubmit = (values) => {
-      console.log("form submitted");
-      console.log(values);
-    };
-
-    const handlePreviousPage = () => {
-      setCurrentPage((prevPage) => prevPage - 1);
-    };
-  
+  const ProgressBar = ({ step }) => {
     return (
-      <div>
-        <h1 className="Header">APPLICATION FORM</h1>
-        <ProgressBar step={currentPage} />
-
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          validateOnMount={true}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <div>
-                <button type="submit">Submit</button>
-                <button type="button" onClick={handleNextPage}>Next</button>
-                {currentPage === 1 && <StepOne onNext={handleNextPage} />}
-                {currentPage === 2 && (
-                  <StepTwo
-                    onPrevious={handlePreviousPage}
-                    onNext={handleNextPage}
-                  />
-                )}
-                {currentPage === 3 && (
-                  <StepThree
-                    onPrevious={handlePreviousPage}
-                    onNext={handleNextPage}
-                  />
-                )}
-                {currentPage === 4 && (
-                  <StepFour
-                    onPrevious={handlePreviousPage}
-                    onNext={handleNextPage}
-                  />
-                )}
-                {currentPage === 5 && (
-                  <StepFive
-                    onPrevious={handlePreviousPage}
-                    onNext={handleNextPage}
-                  />
-                )}
-                {currentPage === 6 && (
-                  <StepSix
-                    onPrevious={handlePreviousPage}
-                    onSubmit={onSubmit}
-                  />
-                )}
-              </div>
-              {/* <div className="Button_form">
-                <button
-                  onClick={() => handlePreviousPage()}
-                  className={`Back ${currentPage <= 1 ? "disabled" : ""}`}
-                >
-                  ย้อนกลับ
-                </button>
-                <button onClick={() => handleNextPage()} className="Next">
-                  ถัดไป
-                </button>
-              </div> */}
-            </Form>
-          )}
-        </Formik>
+      <div className="progress-bar">
+        <div className="progress-steps d-flex">
+          <div className={`Progress ${currentPage >= 1 ? "active" : ""}`}></div>
+          <div className={`Progress ${currentPage >= 2 ? "active" : ""}`}></div>
+          <div className={`Progress ${currentPage >= 3 ? "active" : ""}`}></div>
+          <div className={`Progress ${currentPage >= 4 ? "active" : ""}`}></div>
+          <div className={`Progress ${currentPage >= 5 ? "active" : ""}`}></div>
+          <div className={`Progress ${currentPage >= 6 ? "active" : ""}`}></div>
+        </div>
       </div>
     );
   };
-  
-  export default MultiForm;
+
+  const handleNextPage = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+  const onSubmit = (values) => {
+    console.log("form submitted");
+    console.log(values);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  return (
+    <div>
+      <Head>
+        <title>Application Form</title>
+      </Head>
+      <h1 className="Header">APPLICATION FORM</h1>
+      <ProgressBar step={currentPage} />
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        validateOnMount={true}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              {currentPage === 1 && <StepOne onNext={handleNextPage} />}
+              {currentPage === 2 && (
+                <StepTwo
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                />
+              )}
+              {currentPage === 3 && (
+                <StepThree
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                />
+              )}
+              {currentPage === 4 && (
+                <StepFour
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                />
+              )}
+              {currentPage === 5 && (
+                <StepFive
+                  onPrevious={handlePreviousPage}
+                  onNext={handleNextPage}
+                />
+              )}
+              {currentPage === 6 && (
+                <StepSix onPrevious={handlePreviousPage} onSubmit={onSubmit} />
+              )}
+            </div>
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
+
+export default MultiForm;

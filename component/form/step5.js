@@ -15,15 +15,9 @@ const StepFive = ({ onPrevious, onNext }) => {
     const handleRemoveFile = (location) => {
       formik.setFieldValue(location, null);
     };
-
-    const test = () => {
-      console.log(formik.values);
-      console.log(formik.errors);
-    };
     return (
       <>
         <div className="FormBox">
-          <button onClick={() => test()}>Test</button>
           <div>
             <div className="File Form_log border-top-0">
               <h4>

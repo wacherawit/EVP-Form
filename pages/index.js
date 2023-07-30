@@ -24,12 +24,11 @@ export default function Home({ events }) {
         <title>EventPass</title>
       </Head>
       <div className="Image_banner">
-        <Image src="/BG.png" width={1440} height={424} />
-        <Image
+        <Image alt="Eventpass EventpassCareers" priority src="/BG.png" width={1440} height={424} />
+        <img
           className="Image_home"
           src="/Img.png"
-          width={1116}
-          height={424}
+          alt="Eventpass EventpassCareers"
         />
       </div>
       <Container>

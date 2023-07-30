@@ -16,14 +16,8 @@ const StepSix = ({onPrevious, onSubmit}) => {
     "ข้าพเจ้ารับทราบและยินยอมให้บริษัทเก็บรวบรวม ใช้ และ/หรือ เปิดเผยข้อมูลส่วนบุคคลที่เป็นข้อมูลอ่อนไหวของข้าพเจ้า ตามมาตรา 26 แห่งพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ.2562 ได้แก่ ข้อมูลชีวภาพ เพื่อการเข้า - ออก บริเวณอาคาร และเพื่อรักษา ความปลอดภัยของบุคคลและทรัพย์สินภายในและบริเวณอาคาร หรือวัตถุประสงค์อื่น ๆ ในลักษณะเดียวกัน",
   ];
 
-  const test = () => {
-    console.log(formik.values.Submit_Term)
-    console.log(formik.values)
-    console.log(formik.errors)
-  };
   return (
     <>
-      <button onClick={() => test()}>Test</button>
       <div className="FormBox">
         <div>
           <div className="fs-5">
@@ -181,9 +175,6 @@ const StepSix = ({onPrevious, onSubmit}) => {
         </div>
       </div>
       <div className="Button_form">
-      <button onClick={onPrevious} className="Back">
-          ย้อนกลับ
-        </button>
         <button
         onClick={onSubmit}
         type="submit"

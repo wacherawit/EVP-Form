@@ -2,10 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "react-bootstrap";
 export default function Footer({ event }) {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
   return (
     <>
       <Container>
         <footer>
+        <div className="scrollBtn">
+          <button onClick={() => scrollToTop()}>
+            <Image src="/scrollTotop.svg" width={25} height={15} />
+          </button>
+        </div>
           <div className="fs-2 d-flex justify-content-center">
             Eventthai Limited
           </div>
@@ -18,9 +26,9 @@ export default function Footer({ event }) {
                   width="550"
                   height="400"
                   styles="border:0;"
-                  allowfullscreen=""
+                  allowFullScreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
                 <div>
                   <h3>บริษัท อีเว้นท์ไทย จำกัด (สำนักงานใหญ่)</h3>
@@ -57,9 +65,9 @@ export default function Footer({ event }) {
                   width="550"
                   height="400"
                   styles="border:0;"
-                  allowfullscreen=""
+                  allowFullScreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
                 <div>
                   <h3>บริษัท อีเว้นท์ไทย จำกัด (สำนักงานใหญ่)</h3>
@@ -128,128 +136,128 @@ export default function Footer({ event }) {
             <div className="Foot_right">
               <div className="Menu_box">
                 <h4 className="Head_menu">อีเว้นท์</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ออนไลน์อีเว้นท์</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">งานแสดงสินค้าและนิทรรศการ</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ธุรกิจและการลงทุน</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">งานสินค้าลดราคา</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บันเทิง</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ศิลปะและวัฒนธรรม</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ความรู้และการศึกษา</Link>
                 </div>
               </div>
               <div className="Menu_box">
                 <h4 className="Head_menu">โปรโมชัน</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">อาหาร</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ช็อป</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ท่องเที่ยว</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">แฟชั่น</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ไอทีเครื่องใช้ไฟฟ้า</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บ้านและสวน</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บิวตี้ & เฮลตี้</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บันเทิง</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">การเงิน</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">การเดินทาง</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ทั่วไป</Link>
                 </div>
               </div>
               <div className="Menu_box">
                 <h4 className="Head_menu">ไลฟ์สไตล์</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บันเทิง</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ทิปส์</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บิวตี้แอนด์แฟชัน</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">สุขภาพ</Link>
                 </div>
               </div>
               <div className="Menu_box">
                 <h4 className="Head_menu">บทความ</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">แนวโน้มธุรกิจ</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">รีวิวอีเว้นท์</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">เทคโนโลยีเทรนด์</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ชีวิตคนเมือง</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">การลงทุน</Link>
                 </div>
               </div>
               <div className="Menu_box">
                 <h4 className="Head_menu">กินเที่ยว</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">เช็คอิน</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">วันเดย์ทริป</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">คาเฟ่</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ร้านอาหาร</Link>
                 </div>
               </div>
               <div className="Menu_box"></div>
               <div className="Menu_box">
                 <h4 className="Head_menu">อีเว้นท์พาส</h4>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">เกี่ยวกับเรา</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ติดต่อโฆษณา</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">ติดต่อเรา</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">บริการของเรา</Link>
                 </div>
-                <div class="Menu_link">
+                <div className="Menu_link">
                   <Link href="/">Virtual Solution</Link>
                 </div>
               </div>

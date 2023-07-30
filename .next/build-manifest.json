@@ -22,6 +22,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+    "/about/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/about/[id].js"
+    ],
     "/form": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

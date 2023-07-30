@@ -13,10 +13,6 @@ const StepOne = ({ onNext }) => {
     formik.values.Address_contact.Same_address
   );
 
-  const test = () => {
-    console.log(formik.values.Address_contact);
-  };
-
   const MenuClick = (menuId) => {
     setActiveMenu(menuId === activeMenu ? null : menuId);
   };
@@ -39,7 +35,6 @@ const StepOne = ({ onNext }) => {
   return (
     <>
       <div className="FormBox">
-        <button onClick={() => test()}>Test</button>
         <div>
           <div className="Personal Form_log border-top-0">
             <h3>ประวัติส่วนตัว (Personal Background)</h3>
@@ -269,7 +264,7 @@ const StepOne = ({ onNext }) => {
                     type="text"
                     id="personalInfo.Id_card"
                     name="personalInfo.Id_card"
-                    maxlength="13"
+                    maxLength="13"
                     onChange={formik.handleChange}
                   />
                   <ErrorMessage
@@ -328,7 +323,7 @@ const StepOne = ({ onNext }) => {
                     type="text"
                     id="personalInfo.Phone.phone"
                     name="personalInfo.Phone.phone"
-                    maxlength="10"
+                    maxLength="10"
                     onChange={formik.handleChange}
                   />
                   <ErrorMessage
@@ -349,7 +344,7 @@ const StepOne = ({ onNext }) => {
                     type="text"
                     id="personalInfo.Phone.Emergen"
                     name="personalInfo.Phone.Emergen"
-                    maxlength="10"
+                    maxLength="10"
                     onChange={formik.handleChange}
                   />
                 </div>
@@ -535,7 +530,7 @@ const StepOne = ({ onNext }) => {
                     type="text"
                     id="Address.Post"
                     name="Address.Post"
-                    maxlength="5"
+                    maxLength="5"
                     onChange={formik.handleChange}
                   />
                   <ErrorMessage
@@ -736,7 +731,7 @@ const StepOne = ({ onNext }) => {
                     type="text"
                     id="Address_contact.Post"
                     name="Address_contact.Post"
-                    maxlength="5"
+                    maxLength="5"
                     onChange={formik.handleChange}
                     disabled={Samedata}
                   />
@@ -753,6 +748,7 @@ const StepOne = ({ onNext }) => {
       </div>
       <div className="Button_form">
         <button
+          type="button"
           onClick={() => handlePreviousPage()}
           className={`Back disabled`}
         >
@@ -760,6 +756,7 @@ const StepOne = ({ onNext }) => {
         </button>
         <button
           onClick={onNext}
+          type="button"
           className={`Next ${
             !!formik.errors.personalInfo ||
             !!formik.errors.Address ||

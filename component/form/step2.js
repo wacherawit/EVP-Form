@@ -27,15 +27,6 @@ const StepTwo = ({ onPrevious, onNext }) => {
   const options_Soldier = ["ได้รับการยกเว้น", "ศึกษาวิชาทหาร", "ผ่านการเกณฑ์ทหาร", "อื่น ๆ"];
   return (
     <>
-      <button
-        type="button"
-        onClick={() => {
-          console.log(formik.values.More_person);
-          console.log(formik.errors.Status);
-        }}
-      >
-        Test
-      </button>
       <div className="FormBox">
         <div className="Personal Form_log border-top-0">
           <h3>ประวัติส่วนตัว (Personal Background)</h3>
@@ -377,7 +368,7 @@ const StepTwo = ({ onPrevious, onNext }) => {
                       type="text"
                       id={`More_person.${index}.phone`}
                       name={`More_person.${index}.phone`}
-                      maxlength="10"
+                      maxLength="10"
                     />
                     <ErrorMessage
                       name={`More_person.${index}.phone`}

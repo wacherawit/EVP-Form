@@ -10,11 +10,17 @@ const StepThree = ({ onPrevious, onNext }) => {
   const [Exp, SetExp] = useState(formik.values.Experience.isExperience);
   const [numFields, setNumFields] = useState(formik.values.Experience.length);
 
+  const handleIsExperienceChange = (newValue) => {
+    formik.setFieldValue('Experience.isExperience', newValue);
+    formik.validateForm();
+  };
+
   const handleAddField = () => {
     setNumFields(prevNumFields => prevNumFields + 1);
   };
 
     const NoExp = () =>{
+        formik.validateForm();
         if(!Exp){
             formik.setFieldValue("Experience", formik.values.Experience_default);
             setNumFields(1);
@@ -35,16 +41,6 @@ const StepThree = ({ onPrevious, onNext }) => {
   return (
     <>
       <div className="FormBox">
-        <button
-          type="button"
-          onClick={() => {
-            console.log(formik.values.Experience);
-            console.log(formik.values.Experience.isExperience);
-            console.log(formik.errors.Experience);
-          }}
-        >
-          Test
-        </button>
         <div className="Education Form_log border-top-0">
           <h3>ประวัติการศึกษา (Educational Background)*</h3>
           <div className="Check_box pt-2">
@@ -56,7 +52,7 @@ const StepThree = ({ onPrevious, onNext }) => {
               onChange={formik.handleChange}
             />
             <div>มัธยมศึกษา</div>
-          </div>                                                                          
+          </div>
           <div className="FormCon School_name">
             <label htmlFor="School_name">ชื่อสถาบัน*</label>
             <div className="InputBox">
@@ -108,7 +104,7 @@ const StepThree = ({ onPrevious, onNext }) => {
                   name="Education.School.School_year.start"
                   onChange={formik.handleChange}
                   placeholder="YYYY"
-                  maxlength="4"
+                  maxLength="4"
                 />
                 <div className="fs-4 ms-1 me-1 fw-light"> - </div>
                 <Field
@@ -118,7 +114,7 @@ const StepThree = ({ onPrevious, onNext }) => {
                   name="Education.School.School_year.end"
                   onChange={formik.handleChange}
                   placeholder="YYYY"
-                  maxlength="4"
+                  maxLength="4"
                 />
               </div>
               <ErrorMessage
@@ -241,7 +237,7 @@ const StepThree = ({ onPrevious, onNext }) => {
                   name="Education.University.Uni_year.start"
                   onChange={formik.handleChange}
                   placeholder="YYYY"
-                  maxlength="4"
+                  maxLength="4"
                 />
                 <div className="fs-4 ms-1 me-1 fw-light"> - </div>
                 <Field
@@ -251,7 +247,7 @@ const StepThree = ({ onPrevious, onNext }) => {
                   name="Education.University.Uni_year.end"
                   onChange={formik.handleChange}
                   placeholder="YYYY"
-                  maxlength="4"
+                  maxLength="4"
                 />
               </div>
               <ErrorMessage
@@ -308,7 +304,7 @@ const StepThree = ({ onPrevious, onNext }) => {
             />
             <div>ไม่มีประสบการณ์ทำงาน / เด็กจบใหม่</div>
           </div>
-          {Array.from({ length: numFields }).map ((_, index) => (
+          {Array.from({ length: numFields }).map((_, index) => (
             <div key={index} className={`${index > 0 ? "Form_log" : ""}`}>
               <div className="FormCon Company_name">
                 <label htmlFor={`Company_name${index}`}>ชื่อบริษัท*</label>
@@ -374,11 +370,13 @@ const StepThree = ({ onPrevious, onNext }) => {
                 </div>
               </div>
               <div className="FormCon Company_Jobs align-items-start mt-3">
-                <label htmlFor={`Jobs${index}`}>ลักษณะงานที่รับผิดชอบโดยย่อ*</label>
+                <label htmlFor={`Jobs${index}`}>
+                  ลักษณะงานที่รับผิดชอบโดยย่อ*
+                </label>
                 <div className="InputBox mt-0 ">
                   <div className="Input_Full">
                     <Field
-                        component="textarea"
+                      component="textarea"
                       rows="4"
                       className={`textInput_full_Big ${Exp ? "disabled" : ""}`}
                       placeholder="ลักษณะงาน"
@@ -407,18 +405,22 @@ const StepThree = ({ onPrevious, onNext }) => {
                             {...field}
                             selected={field.value}
                             showMonthDropdown
-                          showYearDropdown
-                          yearDropdownItemNumber={50}
-                          scrollableYearDropdown
-                          formatWeekDay={nameOfDay => nameOfDay.substr(0,3)}
-                          useShortMonthInDropdown
+                            showYearDropdown
+                            yearDropdownItemNumber={50}
+                            scrollableYearDropdown
+                            formatWeekDay={(nameOfDay) =>
+                              nameOfDay.substr(0, 3)
+                            }
+                            useShortMonthInDropdown
                             onChange={(date) => {
                               form.setFieldValue(field.name, date);
                               formik.handleChange;
                             }}
                             dateFormat="MM/yyyy"
                             placeholderText="MM/YYYY"
-                            className={`date-picker_small ${Exp ? "disabled" : ""}`}
+                            className={`date-picker_small ${
+                              Exp ? "disabled" : ""
+                            }`}
                             disabled={formik.values.Experience.isExperience}
                           />
                         )}
@@ -446,18 +448,22 @@ const StepThree = ({ onPrevious, onNext }) => {
                             {...field}
                             selected={field.value}
                             showMonthDropdown
-                          showYearDropdown
-                          yearDropdownItemNumber={50}
-                          scrollableYearDropdown
-                          formatWeekDay={nameOfDay => nameOfDay.substr(0,3)}
-                          useShortMonthInDropdown
+                            showYearDropdown
+                            yearDropdownItemNumber={50}
+                            scrollableYearDropdown
+                            formatWeekDay={(nameOfDay) =>
+                              nameOfDay.substr(0, 3)
+                            }
+                            useShortMonthInDropdown
                             onChange={(date) => {
                               form.setFieldValue(field.name, date);
                               formik.handleChange;
                             }}
                             dateFormat="MM/yyyy"
                             placeholderText="MM/YYYY"
-                            className={`date-picker_small ${Exp ? "disabled" : ""}`}
+                            className={`date-picker_small ${
+                              Exp ? "disabled" : ""
+                            }`}
                             disabled={formik.values.Experience.isExperience}
                           />
                         )}
@@ -471,7 +477,9 @@ const StepThree = ({ onPrevious, onNext }) => {
                 </div>
               </div>
               <div className="FormCon Company_Position_start">
-                <label htmlFor={`Position.start${index}`}>ตำแหน่งแรกเข้า*</label>
+                <label htmlFor={`Position.start${index}`}>
+                  ตำแหน่งแรกเข้า*
+                </label>
                 <div className="InputBox">
                   <div className="Input_left">
                     <Field
@@ -513,7 +521,9 @@ const StepThree = ({ onPrevious, onNext }) => {
                 </div>
               </div>
               <div className="FormCon Company_Salary_start">
-                <label htmlFor={`Company.Salary.start${index}`}>เงินเดือนแรกเข้า*</label>
+                <label htmlFor={`Company.Salary.start${index}`}>
+                  เงินเดือนแรกเข้า*
+                </label>
                 <div className="InputBox">
                   <div className="Input_left">
                     <Field
@@ -534,7 +544,9 @@ const StepThree = ({ onPrevious, onNext }) => {
                 </div>
               </div>
               <div className="FormCon Company_Salary_end mb-3">
-                <label htmlFor={`Company.Salary.end${index}`}>เงินเดือนสุดท้าย*</label>
+                <label htmlFor={`Company.Salary.end${index}`}>
+                  เงินเดือนสุดท้าย*
+                </label>
                 <div className="InputBox">
                   <div className="Input_left">
                     <Field
@@ -557,11 +569,11 @@ const StepThree = ({ onPrevious, onNext }) => {
             </div>
           ))}
           <div className="FormCon">
-          <button onClick={handleAddField} className="add_person_btn">
-            <img src="/add-icon.svg" />
-          </button>
-          <div className="add_person">เพิ่มตำแหน่งงาน</div>
-        </div>
+            <button onClick={handleAddField} className="add_person_btn">
+              <img src="/add-icon.svg" />
+            </button>
+            <div className="add_person">เพิ่มตำแหน่งงาน</div>
+          </div>
         </div>
       </div>
       <div className="Button_form">
@@ -570,11 +582,11 @@ const StepThree = ({ onPrevious, onNext }) => {
         </button>
         <button
           onClick={onNext}
-            className={`Next ${
-              !!formik.errors.Education || formik.errors.Experience
-                ? "disabled"
-                : ""
-            }`}
+          className={`Next ${
+            !!formik.errors.Education || formik.errors.Experience
+              ? "disabled"
+              : ""
+          }`}
         >
           ถัดไป
         </button>

@@ -9,14 +9,9 @@ const StepFour = ({ onPrevious, onNext }) => {
   const formik = useFormikContext();
 
 
-  const test = () => {
-    console.log(formik.values)
-    console.log(formik.errors)
-  };
   return (
     <>
       <div className="FormBox">
-        <button onClick={() => test()}>Test</button>
         <div>
           <div className="Know Form_log border-top-0">
             <div className="FormCon Knwo_name w-100 justify-content-between">
@@ -222,7 +217,7 @@ const StepFour = ({ onPrevious, onNext }) => {
                     type="text"
                     id="Start_work.Salary"
                     name="Start_work.Salary"
-                    maxlength="10"
+                    maxLength="10"
                   />
                   <ErrorMessage
                     name="Start_work.Salary"
