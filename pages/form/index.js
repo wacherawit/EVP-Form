@@ -283,10 +283,6 @@ const validationSchema = Yup.object({
   }),
   Start_work: Yup.object({
     now: Yup.boolean(),
-    // date: Yup.string().when('now', {
-    //   is: false,
-    //   then: Yup.string().required("*กรุณากรอกข้อมูลให้ครบถ้วน"),
-    // }),
     Salary: Yup.number()
       .required("*กรุณากรอกข้อมูลให้ครบถ้วน")
       .typeError("*กรุณากรอกข้อมูลให้ถูกต้อง"),
